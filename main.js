@@ -3,7 +3,7 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const menuHamIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const shopCartIcon = document.querySelector('.navbar-shopping-cart');
-const shopCartMenu = document.querySelector('.product-detail');
+const shopCartMenu = document.querySelector('#shoppingCartContainer');
 const cardsContainer = document.querySelector('.cards-container');
 
 
@@ -53,7 +53,7 @@ function toggleshopCart(){
 
 const productList =[];
 productList.push({
-    name: 'bike',
+    name: 'Bicicleta',
     price: 120,
     image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 });
