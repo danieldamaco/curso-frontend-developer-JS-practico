@@ -4,15 +4,23 @@ const menuHamIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const shopCartIcon = document.querySelector('.navbar-shopping-cart');
 const shopCartMenu = document.querySelector('#shoppingCartContainer');
+const productDetailcontainer = document.querySelector('#productDetail');
+const productDetailCloser = document.querySelector('.product-detail-close')
 const cardsContainer = document.querySelector('.cards-container');
-
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuHamIcon.addEventListener('click', toggleMobileMenu);
 shopCartIcon.addEventListener('click', toggleshopCart);
-
+productDetailCloser.addEventListener('click', closeProductDetailAside);
 
 function toggleDesktopMenu(){
+    const isproductDetailcontainerClosed = productDetailcontainer.classList.contains('inactive');
+
+    // si el productDetailcontainer está open, hay que cerrarlo 
+    if(!isproductDetailcontainerClosed){
+        productDetailcontainer.classList.add('inactive');
+    }
+    
     const isshopCartMenuClosed = shopCartMenu.classList.contains('inactive');
 
     // si el shopCartMenu está open, hay que cerrarlo 
@@ -24,6 +32,12 @@ function toggleDesktopMenu(){
 }
 
 function toggleMobileMenu(){
+    const isproductDetailcontainerClosed = productDetailcontainer.classList.contains('inactive');
+
+    // si el productDetailcontainer está open, hay que cerrarlo 
+    if(!isproductDetailcontainerClosed){
+        productDetailcontainer.classList.add('inactive');
+    }
     const isshopCartMenuClosed = shopCartMenu.classList.contains('inactive');
 
     // si el shopCartMenu está open, hay que cerrarlo 
@@ -37,6 +51,12 @@ function toggleMobileMenu(){
 function toggleshopCart(){
     const isMobileMenuClosed = mobileMenu.classList.contains('inactive');
     const isdesktopMenuClosed = desktopMenu.classList.contains('inactive');
+    const isproductDetailcontainerClosed = productDetailcontainer.classList.contains('inactive');
+
+    // si el productDetailcontainer está open, hay que cerrarlo 
+    if(!isproductDetailcontainerClosed){
+        productDetailcontainer.classList.add('inactive');
+    }
 
     // si el desktopMenu está open, hay que cerrarlo 
     if(!isdesktopMenuClosed){
@@ -49,6 +69,26 @@ function toggleshopCart(){
 
     shopCartMenu.classList.toggle('inactive');
     
+}
+
+function openProductDetailAside(){
+    productDetailcontainer.classList.remove('inactive');
+}
+
+function closeProductDetailAside(){
+    const isshopCartMenuClosed = shopCartMenu.classList.contains('inactive');
+
+    // si el shopCartMenu está open, hay que cerrarlo 
+    if(!isshopCartMenuClosed){
+        shopCartMenu.classList.add('inactive');
+    }
+
+    const isdesktopMenuClosed = desktopMenu.classList.contains('inactive');
+    // si el desktopMenu está open, hay que cerrarlo 
+    if(!isdesktopMenuClosed){
+        desktopMenu.classList.add('inactive');
+    }
+    productDetailcontainer.classList.add('inactive')
 }
 
 const productList =[];
@@ -77,6 +117,7 @@ for (product of productList){
 
     const img = document.createElement('img');
     img.setAttribute('src', product.image);
+    img.addEventListener('click', openProductDetailAside);
 
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
